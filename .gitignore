@@ -37,7 +37,6 @@
 *.mode1v3
 *.mode2v3
 *.xcodeproj
-*.xcodeproj/*
 */Project.xcconfig
 *.plist
 # XCode 4
@@ -53,6 +52,8 @@ xcuserdata/
 *.aps
 ipch/
 
+*/Makefile
+*/config.make
 # Eclipse
 .metadata
 local.properties
