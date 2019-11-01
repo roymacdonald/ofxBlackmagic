@@ -1,23 +1,88 @@
-example-pulse/
+###########################
+# ignore folders
+###########################
+###########################
+# ignore generated binaries
+# but not the data folder
+###########################
+*/bin/*
+!*/bin/data/
+*/bin/data/*.xml
+*/bin/data/*/*.xml
+*/.vs/
+#########
+# general
+#########
 
-*.depend
-*.layout
-*.mode*v3
+[Bb]uild/
+[Oo]bj/
+*.o
+[Dd]ebug*/
+[Rr]elease*/
+*.mode*
+*.app/
+*.pyc
+.svn/
+*.log
+
+########################
+# IDE files which should
+# be ignored
+########################
+
+# XCode
 *.pbxuser
-*.app*
-*.DS_*
-*.xcworkspacedata
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+*.xcodeproj
+# XCode 4
+*.xccheckout
 xcuserdata/
 
-*.opensdf
+# Visual Studio
 *.sdf
+*.opensdf
 *.suo
-*.ipch
+*.pdb
+*.ilk
+*.aps
+ipch/
 
-.svn/
-obj/
-bin/
-build/
-!data/
+# Eclipse
+.metadata
+local.properties
+.externalToolBuilders
 
-ofxCv.wiki/
+# Android Studio
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+
+##################
+# operating system
+##################
+
+# Linux
+*~
+# KDE
+.directory
+.AppleDouble
+
+# OSX
+.DS_Store
+*.swp
+*~.nib
+# Thumbnails
+._*
+
+# Windows
+# Image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+# Android
+.csettings
