@@ -22,12 +22,12 @@ public:
     };
     
     ofxBlackMagic();
-    bool setup(int width, int height, float framerate, int deviceId = 0, ColorFrameCaptureMode colorFrameCaptureMode = LOW_LATENCY);
+    virtual bool setup(int width, int height, float framerate, int deviceId = 0, ColorFrameCaptureMode colorFrameCaptureMode = LOW_LATENCY);
     void setColorFrameCaptureMode(ColorFrameCaptureMode colorFrameCaptureMode); // If you want to set a custom value, you just need to cast it as ofxBlackMagic::ColorFrameCaptureMode
     ColorFrameCaptureMode getColorFrameCaptureMode();
     
     void close(); // should call this in ofApp::exit()
-    bool update(); // returns true if there is a new frame
+    virtual bool update(); // returns true if there is a new frame
     
     vector<unsigned char>& getYuvRaw(); // fastest
     ofPixels& getGrayPixels(); // fast
@@ -41,8 +41,13 @@ public:
     void drawGray(); // fast
     void drawColor(); // slower
     
-private:
 	DeckLinkController controller;
+	int getWidth(){return width;}
+	int getHeight(){return height;}
+	
+	string getDeviceName();
+	
+private:
 	
 	bool grayPixOld, colorPixOld;
 	ofPixels yuvPix, grayPix, colorPix;
@@ -51,4 +56,5 @@ private:
 	
 	int width, height;
     ColorFrameCaptureMode colorFrameCaptureMode;
+	string deviceName;
 };

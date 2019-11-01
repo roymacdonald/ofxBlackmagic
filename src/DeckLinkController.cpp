@@ -151,6 +151,51 @@ void DeckLinkController::setColorConversionTimeout(int ms)  {
     colorConversionTimeout = ms;
 }
 
+
+vector<ofVideoFormat> DeckLinkController::getFormats(){
+	vector<ofVideoFormat> formats;
+	BMDTimeValue frameDuration;
+	BMDTimeScale timeScale;
+//	GetFrameRate (/* out */ BMDTimeValue *frameDuration, /* out */ BMDTimeScale *timeScale)
+//	GetWidth (void) = 0;
+//	virtual long GetHeight (void) =
+	for (int modeIndex = 0; modeIndex < modeList.size(); modeIndex++) {
+		if (modeList[modeIndex]->GetFrameRate (&frameDuration, &timeScale) == S_OK) {
+			ofVideoFormat f;
+			f.height = modeList[modeIndex]->GetHeight();
+			f.width = modeList[modeIndex]->GetWidth();
+			f.framerates = { round(100*((float)timeScale/(float)frameDuration))/100 };
+			
+			
+			bool bFound = false;
+//			size_t foundIndex = 0;
+			for(size_t i = 0; i < formats.size(); i++){
+				if(formats[i].width == f.width && formats[i].height == f.height && formats[i].framerates[0] == f.framerates[0]){
+				
+				
+//				if(formats[i].width == f.width && formats[i].height == f.height){
+//					foundIndex = i;
+					bFound = true;
+					break;
+				}
+			}
+//			if(bFound){
+//				formats[foundIndex].framerates.push_back(f.framerates[0]);
+//			}else{
+			
+			if(!bFound){
+				formats.push_back(f);
+			}
+		}
+		else {
+			
+		}
+	}
+	
+	return formats;
+	
+}
+
 vector<string> DeckLinkController::getDisplayModeNames()  {
 	vector<string> modeNames;
 	int modeIndex;

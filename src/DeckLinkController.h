@@ -36,10 +36,16 @@ public:
 	DeckLinkController();
 	virtual ~DeckLinkController();
 	
+	
+	vector<ofVideoFormat> getFormats();
+	
+	
 	bool init();
 	
 	int getDeviceCount();
 	vector<string> getDeviceNameList();
+	
+	string getDeviceName();
 	
 	bool selectDevice(int index);
     void setColorConversionTimeout(int ms);

@@ -16,6 +16,13 @@ bool ofxBlackMagic::setup(int width, int height, float framerate, int deviceId, 
 	}
 	controller.selectDevice(deviceId);
 	vector<string> displayModes = controller.getDisplayModeNames();
+	auto devs = controller.getDeviceNameList();
+	if(deviceId < devs.size()){
+		deviceName = devs[deviceId];
+	}else{
+		ofLogError("ofxBlackMagic::setup") << "deviceId out of bounds. deviceId = " << deviceId << " num devices = " << devs.size();
+	}
+	
 	ofLogVerbose("ofxBlackMagic") << "Available display modes: " << ofToString(displayModes);
     BMDDisplayMode displayMode = controller.getDisplayMode(width, height, framerate);
 
@@ -126,4 +133,7 @@ void ofxBlackMagic::drawGray() {
 
 void ofxBlackMagic::drawColor() {
 	getColorTexture().draw(0, 0);
+}
+string ofxBlackMagic::getDeviceName(){
+	return deviceName;
 }
