@@ -37,8 +37,9 @@
 *.mode1v3
 *.mode2v3
 *.xcodeproj
-*.xcconfig
-*./openFrameworks-Info.plist
+*.xcodeproj/*
+*/Project.xcconfig
+*.plist
 # XCode 4
 *.xccheckout
 xcuserdata/
